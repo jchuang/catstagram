@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $('[data-meow-button="create"]').on('submit', function(event) {
+  $('[data-post-id]').on('submit', '[data-meow-button="create"]', function(event) {
     event.preventDefault();
 
     $form = $(event.currentTarget);
@@ -27,7 +27,7 @@ $(document).ready(function() {
     });
   });
 
-  $('[data-meow-button="delete"]').on('submit', function(event) {
+  $('[data-post-id]').on('submit', '[data-meow-button="delete"]', function(event) {
     event.preventDefault();
 
     $form = $(event.currentTarget);
