@@ -37,6 +37,19 @@ $(document).ready(function() {
       url: $form.attr('action'),
       dataType: "json",
       success: function() {
+        $post = $form.closest('[data-post-id]');
+        action = '/posts/' + $post.data('post-id') + '/meows';
+        $newForm = $('<form>').attr({
+          action: action,
+          method: 'post',
+          'data-meow-button': 'create'
+        });
+        $meowButton = $('<input>').attr({
+          type: 'submit',
+          value: 'Meow'
+        });
+        $newForm.append($meowButton);
+        $form.replaceWith($newForm);
         alert('meow deleted!');
       }
     });
