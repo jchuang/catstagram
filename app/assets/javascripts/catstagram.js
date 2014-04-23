@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $('[data-meow-button="create"]').on('submit', function(event) {
     event.preventDefault();
 
@@ -9,7 +10,7 @@ $(document).ready(function() {
       url: $form.attr('action'),
       dataType: "json",
       success: function(meow) {
-        action = '/posts/' + meow.post_id + '/meows' + meow.id;
+        action = '/posts/' + meow.post_id + '/meows/' + meow.id;
         $newForm = $('<form>').attr({
           action: action,
           method: 'delete',
@@ -21,6 +22,22 @@ $(document).ready(function() {
         });
         $newForm.append($meowButton);
         $form.replaceWith($newForm);
+        alert('meow added!');
+      }
+    });
+  });
+
+  $('[data-meow-button="delete"]').on('submit', function(event) {
+    event.preventDefault();
+
+    $form = $(event.currentTarget);
+
+    $.ajax({
+      type: "DELETE",
+      url: $form.attr('action'),
+      dataType: "json",
+      success: function() {
+        alert('meow deleted!');
       }
     });
   });
