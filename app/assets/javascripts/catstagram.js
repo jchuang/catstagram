@@ -8,8 +8,8 @@ $(document).ready(function() {
       type: "POST",
       url: $form.attr('action'),
       dataType: "json",
-      success: function() {
-        alert('meow!');
+      success: function(meow) {
+        debugger;
       }
     });
   });
