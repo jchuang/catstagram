@@ -9,7 +9,18 @@ $(document).ready(function() {
       url: $form.attr('action'),
       dataType: "json",
       success: function(meow) {
-        debugger;
+        action = '/posts/' + meow.post_id + '/meows' + meow.id;
+        $newForm = $('<form>').attr({
+          action: action,
+          method: 'delete',
+          'data-meow-button': 'delete'
+        });
+        $meowButton = $('<input>').attr({
+          type: 'submit',
+          value: 'Remove Meow'
+        });
+        $newForm.append($meowButton);
+        $form.replaceWith($newForm);
       }
     });
   });
