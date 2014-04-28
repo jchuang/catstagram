@@ -40,6 +40,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     $form = $(event.currentTarget);
+    $meows = $form.siblings('[data-post-meow-count]');
 
     $.ajax({
       type: "DELETE",
@@ -59,7 +60,15 @@ $(document).ready(function() {
         });
         $newForm.append($meowButton);
         $form.replaceWith($newForm);
-        alert('meow deleted!');
+
+        var count = $meows.data("postMeowCount");
+        count--;
+        $meows.data("postMeowCount", count);
+        if (count == 1) {
+          $meows.text(count + " Meow");
+        } else {
+          $meows.text(count + " Meows");
+        }
       }
     });
   });
