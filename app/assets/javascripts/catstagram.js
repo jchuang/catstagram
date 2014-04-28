@@ -4,6 +4,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     $form = $(event.currentTarget);
+    $meows = $form.siblings('[data-post-meow-count]');
 
     $.ajax({
       type: "POST",
@@ -22,6 +23,7 @@ $(document).ready(function() {
         });
         $newForm.append($meowButton);
         $form.replaceWith($newForm);
+
         alert('meow added!');
       }
     });
