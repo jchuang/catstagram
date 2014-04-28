@@ -24,7 +24,14 @@ $(document).ready(function() {
         $newForm.append($meowButton);
         $form.replaceWith($newForm);
 
-        alert('meow added!');
+        var count = $meows.data("postMeowCount");
+        count++;
+        $meows.data("postMeowCount", count);
+        if (count == 1) {
+          $meows.text(count + " Meow");
+        } else {
+          $meows.text(count + " Meows");
+        }
       }
     });
   });
