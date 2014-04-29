@@ -1,3 +1,11 @@
+var displayMeowCount = function(element, count) {
+  if (count == 1) {
+    element.text(count + " Meow");
+  } else {
+    element.text(count + " Meows");
+  }
+}
+
 $(document).ready(function() {
 
   $('[data-post-id]').on('submit', '[data-meow-button="create"]', function(event) {
@@ -27,11 +35,7 @@ $(document).ready(function() {
         var count = $meows.data("postMeowCount");
         count++;
         $meows.data("postMeowCount", count);
-        if (count == 1) {
-          $meows.text(count + " Meow");
-        } else {
-          $meows.text(count + " Meows");
-        }
+        displayMeowCount($meows, count);
       }
     });
   });
@@ -64,11 +68,7 @@ $(document).ready(function() {
         var count = $meows.data("postMeowCount");
         count--;
         $meows.data("postMeowCount", count);
-        if (count == 1) {
-          $meows.text(count + " Meow");
-        } else {
-          $meows.text(count + " Meows");
-        }
+        displayMeowCount($meows, count);
       }
     });
   });
