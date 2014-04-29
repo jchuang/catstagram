@@ -1,9 +1,18 @@
+var displayMeowCount = function(element, count) {
+  if (count == 1) {
+    element.text(count + " Meow");
+  } else {
+    element.text(count + " Meows");
+  }
+}
+
 $(document).ready(function() {
 
   $('[data-post-id]').on('submit', '[data-meow-button="create"]', function(event) {
     event.preventDefault();
 
     $form = $(event.currentTarget);
+    $meows = $form.siblings('[data-post-meow-count]');
 
     $.ajax({
       type: "POST",
@@ -22,7 +31,11 @@ $(document).ready(function() {
         });
         $newForm.append($meowButton);
         $form.replaceWith($newForm);
-        alert('meow added!');
+
+        var count = $meows.data("postMeowCount");
+        count++;
+        $meows.data("postMeowCount", count);
+        displayMeowCount($meows, count);
       }
     });
   });
@@ -31,6 +44,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     $form = $(event.currentTarget);
+    $meows = $form.siblings('[data-post-meow-count]');
 
     $.ajax({
       type: "DELETE",
@@ -50,7 +64,11 @@ $(document).ready(function() {
         });
         $newForm.append($meowButton);
         $form.replaceWith($newForm);
-        alert('meow deleted!');
+
+        var count = $meows.data("postMeowCount");
+        count--;
+        $meows.data("postMeowCount", count);
+        displayMeowCount($meows, count);
       }
     });
   });
